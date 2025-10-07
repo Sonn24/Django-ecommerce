@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% block product %}
+
+<main class="mt-5 pt-4">
+  <div class="container dark-grey-text mt-5">
+
+    ```
+    <div class="row wow fadeIn">
+      <!-- Image -->
+      <div class="col-md-6 mb-4">
+        <img src="{{ item.image.url }}" style="border-radius:8px;" class="img-fluid" alt="{{ item.title }}">
+      </div>
+
+      <!-- Details -->
+      <div class="col-md-6 mb-4">
+        <div class="p-4">
+          <div class="mb-3">
+            <span class="badge purple mr-1">{{ item.get_category_display }}</span>
+          </div>
+
+          <h2 class="mb-3">{{ item.title }}</h2>
+
+          <!-- ✅ Size Selection -->
+          {% if item.sizes.all %}
+          <h5>Select Size:</h5>
+          <div class="mb-3">
+            {% for s in item.sizes.all %}
+            <button type="button" class="btn btn-outline-primary size-btn" data-size="{{ s.size }}"
+              data-price="{{ s.price }}" data-discount="{{ s.discount_price|default_if_none:'' }}">
+              {{ s.size }}
+            </button>
+            {% endfor %}
+          </div>
+          {% endif %}
+
+          <!-- ✅ Color Selection -->
+          {% if item.colors.all %}
+          <h5>Select Color:</h5>
+          <div class="mb-3">
+            {% for c in item.colors.all %}
+            <button type="button" class="btn btn-outline-dark color-btn" data-color="{{ c.color_or_team }}">
+              {{ c.color_or_team }}
+            </button>
+            {% endfor %}
+          </div>
+          {% endif %}
+
+          <!-- ✅ Dynamic Price Display -->
+          <p class="lead mt-3">
+            <span id="price-display">
+              {% if item.discount_price %}
+              <span class="mr-1"><del>Ksh {{ item.price|intcomma }}</del></span>
+              <span>Ksh {{ item.discount_price|intcomma }}</span>
+              {% else %}
+              Ksh {{ item.price|intcomma }}
+              {% endif %}
+            </span>
+          </p>
+
+          <!-- ✅ Quantity -->
+          <div class="form-group" style="max-width:120px;">
+            <label for="quantity">Quantity</label>
+            <input type="number" id="quantity" name="quantity" class="form-control" value="1" min="1">
+          </div>
+
+          <!-- ✅ Add to Cart -->
+          <form id="add-to-cart-form" method="GET" action="{{ item.get_add_to_cart_url }}">
+            <input type="hidden" name="size" id="selected-size">
+            <input type="hidden" name="color" id="selected-color">
+            <input type="hidden" name="price" id="selected-price">
+            <input type="hidden" name="quantity" id="selected-quantity" value="1">
+            <button type="submit" class="btn btn-primary btn-md my-0">
+              Add to Cart <i class="fas fa-shopping-cart ml-1"></i>
+            </button>
+          </form>
+
+          <a href="{{ item.get_remove_from_cart_url }}" class="btn btn-danger btn-md my-0 p">
+            Remove from cart
+          </a>
+
+          <hr>
+
+          <p class="lead font-weight-bold">Description</p>
+          <p>{{ item.description }}</p>
+
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- Gallery -->
+    <div class="row wow fadeIn">
+      <div class="col-lg-4 col-md-12 mb-4"><img src="{{ item.image.url }}" class="img-fluid" alt=""></div>
+      <div class="col-lg-4 col-md-6 mb-4"><img src="{{ item.image.url }}" class="img-fluid" alt=""></div>
+      <div class="col-lg-4 col-md-6 mb-4"><img src="{{ item.image.url }}" class="img-fluid" alt=""></div>
+    </div>
+    ```
+
+  </div>
+</main>
+
+<!-- ✅ JS for Dynamic Selection -->
+
+<script>
+  let selectedSize = null;
+  let selectedColor = null;
+  let selectedPrice = null;
+
+  document.querySelectorAll('.size-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+      selectedSize = this.dataset.size;
+      selectedPrice = this.dataset.discount || this.dataset.price;
+      document.getElementById('selected-size').value = selectedSize;
+      document.getElementById('selected-price').value = selectedPrice;
+      document.getElementById('price-display').innerHTML = `Ksh ${Number(selectedPrice).toLocaleString()}`;
+
+      // Highlight active button
+      document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
+  document.querySelectorAll('.color-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+      selectedColor = this.dataset.color;
+      document.getElementById('selected-color').value = selectedColor;
+
+      // Highlight active button
+      document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
+  // Sync quantity with hidden input
+  document.getElementById('quantity').addEventListener('input', function () {
+    document.getElementById('selected-quantity').value = this.value;
+  });
+</script>
+
+{% endblock product %}

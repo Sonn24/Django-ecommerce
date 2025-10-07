@@ -1,0 +1,70 @@
+{% extends "blog/base.html" %}
+{% block marksheet %}
+
+
+<section id="calculator" class="contact">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2>Marksheet</h2>
+        <p>Marksheet</p>
+      </div>
+
+      {% comment %} <div> {% endcomment %}
+        {% comment %} <iframe style="border:0; width: 100%; height: 270px;" src="https://www.https://www.google.com/maps/place/Raymedia/@0.0446432,37.651381,17z/data=!3m1!4b1!4m6!3m5!1s0x178821babd8b01cd:0x9ea73e1bbcd58daa!8m2!3d0.0446432!4d37.6539559!16s%2Fg%2F11khrhwxr1?entry=ttu&g_ep=EgoyMDI1MDYzMC4wIKXMDSoASAFQAw%3D%3D" frameborder="0" allowfullscreen></iframe> {% endcomment %}
+      {% comment %} </div> {% endcomment %}
+
+        </div>
+
+
+<div class="col-lg-8 mt-5 mt-lg-0">
+    <form  action= "{% url 'mark' %}" method="post" class="form-control">
+      {% csrf_token %}
+      <div class="row">
+        <div class="result mt-3 form-group">
+          <input type="text" name="s1" class="form-control"  placeholder="subject 1" required>
+        </div>
+        <br>
+        <div class="result mt-3 form-group ">
+          <input type="text" name="s2" class="form-control" placeholder="subject 2" required>
+        </div>
+        <br>
+        <div class="result mt-3 form-group">
+          <input type="text" name="s3" class="form-control"  placeholder="subject 3" required>
+        </div>
+        <br>
+        <div class="result mt-3 form-group">
+          <input type="text" name="s4" class="form-control"  placeholder="subject 4" required>
+        </div>
+        <br>
+        <div class="result mt-3 form-group">
+          <input type="text" name="s5" class="form-control"  placeholder="subject 5" required>
+        </div>
+        <br>
+        <br>
+  
+        <div class="col-md-6 mt-3"><button type="submit">Calculate</button></div>
+        <br><br>
+      {% comment %} {% if data %} {% endcomment %}
+                <div class="result mt-3">
+                    <label>Total</label>
+                    <input type="text" class="form-control" value="{{ t }}" readonly>
+                </div>
+                <div class="result mt-3">
+                    <label>Percentage</label>
+                    <input type="text" class="form-control" value="{{ p }}" readonly>
+                </div>
+                <div class="result mt-3">
+                    <label>Class</label>
+                    <input type="text" class="form-control" value="{{ c }}" readonly>
+                </div>
+      {% comment %} {% endif %} {% endcomment %}
+         </div>
+    </form>
+  </div>
+
+</div>
+</div>
+</section><!-- End calculator Section -->
+
+{% endblock marksheet %}

@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+
+{% block extra_head %}
+<style>
+  #stripeBtnLabel {
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 16px;
+    font-variant: normal;
+    padding: 0;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    font-weight: 500;
+    display: block;
+  }
+
+  #stripeBtn {
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    text-decoration: none;
+    color: #fff;
+    background: #32325d;
+    white-space: nowrap;
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    text-decoration: none;
+    -webkit-transition: all 150ms ease;
+    transition: all 150ms ease;
+    float: left;
+    width: 100%
+  }
+
+  button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 7px 14px rgba(50, 50, 93, .10), 0 3px 6px rgba(0, 0, 0, .08);
+    background-color: #43458b;
+  }
+
+  .payment-form {
+    padding: 5px 30px;
+  }
+
+  .payment-form-row {
+    width: 100%;
+    float: left;
+    margin-top: 5px;
+    margin-bottom: 15px;
+  }
+
+  .form-control:focus {
+    box-shadow: 0 1px 3px 0 #cfd7df;
+    border-color: #80bdff;
+  }
+
+  .error-message {
+    height: 20px;
+    padding: 4px 0;
+    color: #fa755a;
+  }
+
+  .mpesa-info {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+  }
+</style>
+{% endblock extra_head %}
+
+{% block content %}
+<main>
+  <div class="container wow fadeIn">
+    <h2 class="my-5 h2 text-center">Payment</h2>
+
+    <div class="row">
+      <!-- Cart summary section -->
+      <div class="col-md-12 mb-4">
+        {% include "order_snippet.html" %}
+      </div>
+
+      <!-- Customer information and payment section -->
+      <div class="col-md-12 mb-4">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="mb-0">Customer Information</h4>
+          </div>
+          <div class="card-body">
+            <form action="." method="post" id="payment-form" class="payment-form">
+              {% csrf_token %}
+
+              <input type="hidden" name="amount" value="{{ order.get_total }}" id="total-amount">
+
+              <!-- Full Name -->
+              <div class="payment-form-row">
+                <label for="customer-name">Full Name</label>
+                <input type="text" id="customer-name" name="customer_name" class="form-control"
+                  placeholder="Enter your full name" required>
+              </div>
+
+              <!-- Phone Number -->
+              <div class="payment-form-row">
+                <label for="phone-number">Phone Number (M-Pesa)</label>
+                <input type="tel" id="phone-number" name="phone_number" class="form-control" placeholder="07XX XXX XXX"
+                  required>
+              </div>
+
+              <!-- Email Address -->
+              <div class="payment-form-row">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email address"
+                  required>
+              </div>
+
+              <!-- Delivery Address -->
+              <div class="payment-form-row">
+                <label for="delivery-address">Delivery Address</label>
+                <textarea id="delivery-address" name="delivery_address" class="form-control" rows="3"
+                  placeholder="Type your delivery address here..." required></textarea>
+              </div>
+
+              <!-- Additional Info -->
+              <div class="payment-form-row">
+                <label for="additional-info">Additional Information (Optional)</label>
+                <textarea id="additional-info" name="additional_info" class="form-control" rows="3"
+                  placeholder="E.g. Preferred delivery time, landmark, etc."></textarea>
+              </div>
+
+              <!-- M-Pesa Payment Information -->
+              <div class="mpesa-info">
+                <h5>M-Pesa Payment Instructions</h5>
+                <p>To complete your order, please make payment via M-Pesa:</p>
+                <ul>
+                  <li><strong>Go to</strong> M-Pesa on your phone</li>
+                  <li><strong>Select</strong> Lipa na M-Pesa</li>
+                  <li><strong>Choose</strong> Pay Bill</li>
+                  <li><strong>Enter Business Number:</strong>
+                    <span style="color:#107BDE; font-weight:bold;">542542</span>
+                  </li>
+                  <li><strong>Enter Account Number:</strong>
+                    <span style="color:#107BDE; font-weight:bold;">014466</span>
+                  </li>
+                  <li><strong>Enter Amount:</strong> The total shown above</li>
+                  <li><strong>Enter PIN</strong> and confirm</li>
+                </ul>
+                <p><em>After payment, click "Submit Payment" to confirm your order.</em></p>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="payment-form-row">
+                <button id="stripeBtn" type="submit">Submit Payment</button>
+              </div>
+
+              <div id="error-message" class="error-message" role="alert"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock content %}
+
+{% block extra_scripts %}
+<script>
+  // Form validation and submission
+  document.getElementById('payment-form').addEventListener('submit', function (event) {
+    var phoneNumber = document.getElementById('phone-number').value;
+    var errorElement = document.getElementById('error-message');
+
+    if (!/^07\d{8}$/.test(phoneNumber) && !/^01\d{8}$/.test(phoneNumber)) {
+      event.preventDefault();
+      errorElement.textContent = 'Please enter a valid phone number (07... or 01.....)';
+    } else {
+      errorElement.textContent = '';
+    }
+  });
+</script>
+{% endblock extra_scripts %}

@@ -1,0 +1,285 @@
+{% extends "base.html" %}
+{% block index %}
+
+{% load static %}
+<section id="hero" style="height: 90vh; margin-top: 0rem;">
+  <div id="content-top" class="d-flex"
+    style="height: 100%; margin: 0 0rem; margin-left: 4rem; margin-right: 2rem; margin-bottom: 0; gap:  2rem;">
+
+    <!-- Carousel Section -->
+    <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" style="flex: 3; height: 100%;">
+      <div class="carousel-inner h-100">
+        <div class="carousel-item active h-100">
+          <img src="{% static 'assets/img/promo.png' %}" class="d-block w-100 h-100 object-fit-fill" alt="Slide 1">
+        </div>
+        <div class="carousel-item h-100">
+          <img src="{% static 'assets/img/profile.png' %}" class="d-block w-100 h-100 object-fit-fill" alt="Slide 2">
+        </div>
+        <div class="carousel-item h-100">
+          <img src="{% static 'assets/img/background.png' %}" class="d-block w-100 h-100 object-fit-fill" alt="Slide 3">
+        </div>
+        <div class="carousel-item h-100">
+          <img src="{% static 'assets/img/slide4.webp' %}" class="d-block w-100 h-100 object-fit-fill" alt="Slide 4">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+
+    <!-- Promo Boxes -->
+    <div class="d-flex flex-column justify-content-between" style="flex: 1; height: 100%; gap: 1rem;">
+      <div class="promo-box" style="flex: 1; margin-right: 2rem;">
+        <img src="{% static 'assets/img/stanely.png' %}" alt="Promo 1"
+          class="img-fluid w-100 h-100 object-fit-fill rounded">
+      </div>
+      <div class="promo-box" style="flex: 1; margin-right: 2rem;">
+        <img src="{% static 'assets/img/jersey.png' %}" alt="Promo 2"
+          class="img-fluid w-100 h-100 object-fit-fill rounded">
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- scrolling -->
+<section id="scrolling-products">
+  <div id="scroll-container">
+    <div id="scroll-track">
+      <!-- placeholder images -->
+      <div class="scroll-item"><img src="{% static 'assets/img/portfolio/portfolio-1.jpg' %}" />
+        <div class="product-name">Jersey</div>
+        <div class="product-price">Ksh 2000</div>
+      </div>
+      <div class="scroll-item"><img src="{% static 'assets/img/portfolio/portfolio-3.jpg' %}" />
+        <div class="product-name">Branded mugs</div>
+        <div class="product-price">Ksh 500</div>
+      </div>
+      <div class="scroll-item"><img src="{% static 'assets/img/portfolio/portfolio-9.jpg' %}" />
+        <div class="product-name">photo mounts</div>
+        <div class="product-price">Ksh 1500</div>
+      </div>
+      <div class="scroll-item"><img src="{% static 'assets/img/portfolio/large format printing.jpeg' %}" />
+        <div class="product-name">Large format printing</div>
+        <div class="product-price">Ksh 500</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<main id="main">
+  <section id="about" class="about">
+    <div class="container-fluid px-5">
+
+      <div class="row">
+
+        <div class="col-lg-6 order-1 order-lg-2">
+          <img src="/static/assets/img/profile.png" class="img-fluid" alt="">
+        </div>
+        <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
+          <h3>About</h3>
+
+          <p>
+            Raymedia is your trusted creative partner specializing in a wide range of design, printing, and branding
+            solutions tailored to elevate your brand and leave a lasting impression. <br>We combine creativity,
+            precision, and modern technology to deliver exceptional visual experiences for both businesses and
+            individuals.
+            <br>
+
+            At Raymedia, we pride ourselves on offering professional graphic design services for both print and social
+            media, alongside high-quality custom printing, branding, and signage solutions. <br>Whether you need
+            standout vehicle branding, 3D signage, corporate stationery, or vibrant social media graphics,<br> we’ve got
+            you covered.
+
+            Our team is passionate about turning ideas into reality, whether through eye-catching visuals, engaging
+            motion graphics, professional videography, or high-quality photography. <br> We also offer support for live
+            shows and podcast productions, giving you a complete media solution under one roof.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!--feature section-->
+  <section id="features" class="features">
+    <div class="container-fluid px-5">
+
+      <div class="row">
+        <div class="image col-lg-6" style='background-image: url("/static/assets/img/features.jpg");'></div>
+        <div class="col-lg-6">
+
+          {% for n in Featuresdata%}
+          <div class="icon-box mt-5 mt-lg-0">
+            <i class="{{ n.icon }}"></i>
+            <h4>{{ n.title }}</h4>
+            <p>{{ n.description }}</p>
+          </div>
+          {% endfor %}
+
+
+        </div>
+      </div>
+
+    </div>
+  </section><!-- End Features Section -->
+
+  <!-- ======= Services Section ======= -->
+  <section id="services" class="services">
+    <div class="container">
+
+      <div class="section-title text-center mb-5">
+        <h2>Services</h2>
+        <p>Check our Services</p>
+      </div>
+
+      <div class="row g-4">
+        {% for n in Servicedata %}
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+          <div class="icon-box p-4 text-center h-100 shadow-sm rounded">
+            <div class="icon mb-3">
+              <i class="{{ n.icon }}" style="font-size: 40px; color: #ff6600;"></i>
+            </div>
+            <h4>
+              <a href="{% url 'core:service_detail' slug=n.slug %}">{{ n.service }}</a>
+            </h4>
+            <p class="text-muted">{{ n.icon_desc }}</p>
+          </div>
+        </div>
+
+        {% endfor %}
+
+      </div>
+
+    </div>
+  </section><!-- End Services Section -->
+
+
+
+
+
+  <!-- ======= Contact Section ======= -->
+  <section id="contact" class="contact">
+    <div class="container-fluid px-5">
+
+      <div class="section-title">
+        <h2>Contact</h2>
+        <p>Contact Us</p>
+      </div>
+
+      <div>
+        <iframe style="border:0; width: 100%; height: 270px;"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.817108928463!2d37.64908497546683!3d0.04464856429137444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x178821babd8b01cd%3A0x9ea73e1bbcd58daa!2sRaymedia!5e0!3m2!1sen!2ske!4v1753340781312!5m2!1sen!2ske"
+          width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+
+      <div class="row mt-5">
+
+        <div class="col-lg-4">
+          <div class="info">
+            {% for n in footerdata %}
+            <div class="address">
+              <i class="bi bi-geo-alt"></i>
+              <h4>Location:</h4>
+              <p>{{ n.address | safe }}</p>
+            </div>
+
+            <div class="email">
+              <i class="bi bi-envelope"></i>
+              <h4>Email:</h4>
+              <p> {{ n.email }}</p>
+            </div>
+
+            <div class="phone">
+              <i class="bi bi-phone"></i>
+              <h4>Call:</h4>
+              <p>{{ n.phone }}</p>
+            </div>
+            {% endfor %}
+          </div>
+
+        </div>
+        <div class="col-lg-8 mt-5 mt-lg-0">
+
+          {% comment %} <form action="/static/forms/contact.php" method="" role="form"> {% endcomment %}
+            {% for message in messages %} {% if message.tags == 'error' %}
+            <div class="alert alert-danger" role="alert">{{ message }}</div>
+            {% else %}
+            <div class="alert alert-success" role="alert">{{ message }}</div>
+            {% endif %}{% endfor %}
+
+            {% comment %} class="php-email-form" {% endcomment %}
+            <form action="{% url 'core:contact' %}" method="post">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                </div>
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+              </div>
+              <div class="form-group mt-3">
+                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+              </div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- End Contact Section -->
+
+</main><!-- End #main -->
+
+<script>
+  document.querySelectorAll('a.scrollto').forEach(link => {
+    link.addEventListener('click', function (e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const track = document.getElementById("scroll-track");
+    const container = document.getElementById("scroll-container");
+    if (!track || !container) { console.error("track/container missing"); return; }
+
+    // Duplicate track content until it's at least twice container width
+    let tries = 0;
+    while (track.scrollWidth < container.offsetWidth * 2 && tries < 6) {
+      track.innerHTML += track.innerHTML;
+      tries++;
+    }
+
+    let pos = 0;
+    const speed = 0.6;
+    let rafId;
+
+    function step() {
+      pos -= speed;
+      if (Math.abs(pos) >= track.scrollWidth / 2) pos = 0;
+      track.style.transform = `translateX(${pos}px)`;
+      rafId = requestAnimationFrame(step);
+    }
+
+    step();
+
+    // pause / resume on hover
+    container.addEventListener("mouseenter", () => cancelAnimationFrame(rafId));
+    container.addEventListener("mouseleave", () => step());
+  });
+</script>
+
+{% endblock index %}
