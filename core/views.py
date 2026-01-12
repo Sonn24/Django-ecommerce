@@ -1,6 +1,5 @@
 import random
 import string
-from bot.chat import get_response
 from .credentials import *
 import stripe
 from django.http import HttpResponse
@@ -17,7 +16,7 @@ from django.views.generic import ListView, DetailView, View
 from .forms import CheckoutForm, CouponForm, RefundForm, PaymentForm
 from .models import Item, OrderItem, Order, Address, Payment, Coupon, Refund, UserProfile
 
-# chatbot associated
+
 from django.shortcuts import render
 from django.http import JsonResponse
 from fuzzywuzzy import process
@@ -57,6 +56,46 @@ def home(request):
         'socialdata': socialdata
     }
     return render(request, "index.html", data)
+
+def photography(request):
+    return render(request, 'photography.html')
+
+
+
+def reservation(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+        studio_type = request.POST.get('studio_type')  
+        date = request.POST.get('date')
+        time = request.POST.get('time')
+
+      
+        send_mail(
+            subject=f'New Studio Reservation from {name}',
+            message=f'Name: {name}\nEmail: {email}\n Studio Type: {studio_type}\n At: {time}\n On: {date}\n Message: {message}',
+            from_email=email,
+            recipient_list=['raymediagraphix@gmail.com'],  
+            fail_silently=False,
+        )
+
+      
+        send_mail(
+            subject='Reservation Received',
+            message=f'Hi {name},\n\nThank you for your reservation request for {studio_type} at {time} on {date}. We have received your reservation details and will contact you shortly.',
+            from_email='raymediagraphix@gmail.com', 
+            recipient_list=[email],
+            fail_silently=False,
+        )
+
+      
+        messages.success(request, 'Reservation received! Check your email for confirmation.')
+
+        
+        return redirect('core:photography')  
+
+    return render(request, 'reservation.html')
 
 def innerpage(request):
     return render(request, "inner-page.html")
@@ -169,7 +208,7 @@ def contact(request):
             </html>
             """
 
-            # Send the email
+          
             email_subject = 'Inquiry Mail Confirmation - Raymedia Graphix'
             from_email = 'muthonijuliet828@gmail.com'
             recipient_list = [email]
@@ -854,8 +893,6 @@ class RequestRefundView(View):
 
 from django.shortcuts import render
 from django.http import JsonResponse
-from bot.chat import ask_gemini, get_response
-
 from django.shortcuts import render
 from django.http import JsonResponse
 

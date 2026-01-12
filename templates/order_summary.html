@@ -65,8 +65,10 @@
 
           <tr>
             <td colspan="8" class="text-end">
-              <a href="{% url 'core:shop' %}" class="btn btn-outline-primary">Continue Shopping</a>
-              <a href="/pay/" class="btn btn-warning ms-2">Proceed to Payment</a>
+              <a href="{% url 'core:shop' %}" class="btn" style="background-color:#ff0000; color:white;">Continue
+                Shopping</a>
+              <a href="/pay/" class="btn" style="background-color:#107BDE; color:white; margin-left:0.5rem;">Proceed to
+                Payment</a>
             </td>
           </tr>
         </tbody>
@@ -76,7 +78,7 @@
       <div class="text-center py-5">
         <h3 class="mb-3">🗑️ Your cart is empty</h3>
         <p class="text-muted">Looks like you have no items in your cart.</p>
-        <a href="{% url 'core:shop' %}" class="btn btn-dark mt-3">
+        <a href="{% url 'core:shop' %}" class="btn" style="background-color:#ff0000; color:white; margin-top:1rem;">
           Continue Shopping
         </a>
       </div>

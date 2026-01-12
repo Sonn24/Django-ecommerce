@@ -57,6 +57,7 @@ CATEGORY_CHOICES = (
     ('BR', 'Branded'),
     ('PM', 'Photo Mount'),
     ('PK', 'Package'),
+    ('DS', 'Design'),
 )
 
 SIZE_CHOICES = (
@@ -72,6 +73,7 @@ SIZE_CHOICES = (
     ('A4', 'A4'),
     ('A5', 'A5'),
 )
+
 
 LABEL_CHOICES = (
     ('N', 'New'),
@@ -89,7 +91,7 @@ class Item(models.Model):
     description = models.TextField()
     image = models.ImageField(upload_to='products/')
 
-    # For packages
+ 
     minimum_quantity = models.PositiveIntegerField(default=1)
     package_price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
 

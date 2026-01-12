@@ -13,7 +13,9 @@
   <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Raleway:300,400,500,600,700|Poppins:300,400,500,600,700" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Raleway:300,400,500,600,700|Poppins:300,400,500,600,700"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
@@ -37,7 +39,8 @@
 
         <!-- Logo (left with ~2rem spacing) -->
         <a class="navbar-brand me-4" href="{% url 'core:home' %}">
-          <img src="{% static 'assets/img/Raymedia Logo.png' %}" alt="Company Logo" class="img-fluid" style="max-height: 60px;">
+          <img src="{% static 'assets/img/Raymedia Logo.png' %}" alt="Company Logo" class="img-fluid"
+            style="max-height: 60px;">
         </a>
 
         <!-- Mobile Toggle -->
@@ -53,6 +56,7 @@
             <li class="nav-item"><a class="nav-link" href="{% url 'core:home' %}">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'core:port' %}">Portfolio</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'core:shop' %}">Shop</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'core:photography' %}">Studio</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'core:home' %}#services">Services</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'core:home' %}#about">About</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'core:home' %}#contact">Contact</a></li>

@@ -1,7 +1,8 @@
 body {
   font-family: "Open Sans", sans-serif;
-  color: #444444;
+  color: #000000;
   background-color: #fff;
+  font-size: 18;
 }
 
 a {
@@ -93,6 +94,157 @@ h6 {
     transform: rotate(360deg);
   }
 }
+
+
+.showcase-area {
+  height: 70vh;
+  background: linear-gradient(rgba(206, 205, 205, 0.144),
+      rgba(233, 231, 231, 0.336)),
+    url("../img/studio1.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-weight: bolder;
+  font-size: large;
+  color: #ff0000;
+}
+
+.showcase-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 1.6rem;
+}
+
+```css
+
+/* ===== About Photography Section ===== */
+#aboutphotography {
+  padding: 4rem 1rem;
+  background-color: #f9f9f9;
+}
+
+.about-wrapper.photography {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 2rem;
+}
+
+```css
+
+/* ===== About Photography Section (Wider Layout) ===== */
+#aboutphotography {
+  padding: 5rem 2rem;
+  background-color: #f9f9f9;
+}
+
+.about-wrapper.photography {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1400px;
+  /* wider container */
+  margin: 0 auto;
+  gap: 3rem;
+}
+
+/* Text side */
+.about-text-photography {
+  flex: 1 1 650px;
+  /* increased width */
+}
+
+.about-text-photography h1 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  color: #007bff;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.about-text-photography h2 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 2rem;
+  color: #000000;
+  margin-bottom: 1rem;
+}
+
+.about-text-photography p {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  color: #000000;
+  line-height: 1.8;
+  font-size: 1.15rem;
+  max-width: 700px;
+}
+
+.about-img {
+  flex: 1 1 600px;
+
+  display: flex;
+  justify-content: center;
+}
+
+.about-img img {
+  width: 100%;
+  max-width: 650px;
+
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  object-fit: cover;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-img img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+
+@media (max-width: 900px) {
+  .about-wrapper.photography {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-text-photography {
+    flex: 1 1 100%;
+  }
+
+  .about-img img {
+    max-width: 100%;
+  }
+
+  .about-text-photography h1 {
+    font-size: 2.3rem;
+  }
+}
+
+```
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .about-wrapper.photography {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-img img {
+    max-width: 100%;
+  }
+
+  .about-text-photography h1 {
+    font-size: 2rem;
+  }
+}
+
 
 /*--------------------------------------------------------------
 # Disable aos animation delay on mobile devices

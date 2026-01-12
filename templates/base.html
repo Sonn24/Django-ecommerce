@@ -3,6 +3,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,6 +11,7 @@
   <title>{% block head_title %}{% endblock %}</title>
   {% block extra_head %}
   {% endblock %}
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
   <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
   <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
@@ -19,74 +21,78 @@
 </head>
 
 <body>
-   
 
-    <div class="mt-5 pt-4">
+
+  <div class="mt-5 pt-4">
     {% if messages %}
-        {% for message in messages %}
-        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-          {{ message }}
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        {% endfor %}
-    {% endif %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
+    {% endfor %}
+    {% endif %}
+  </div>
 
-    {% block content %}
-    {% endblock content %}
+  {% block content %}
+  {% endblock content %}
 
-    {% block extra_body %}
-    {% endblock %}
+  {% block extra_body %}
+  {% endblock %}
 
-        
-    {% block index %}
-    {% endblock index %}
 
-    {% block port %}
-    {% endblock port %}
+  {% block index %}
+  {% endblock index %}
 
-    {% block inner %}
-    {% endblock inner %}
+  {% block port %}
+  {% endblock port %}
 
-    {% block contact %}
-    {% endblock contact %}
+  {% block inner %}
+  {% endblock inner %}
 
-    {% block about %}
-    {% endblock about %}
+  {% block contact %}
+  {% endblock contact %}
 
-    {% block services %}
-    {% endblock services %}
+  {% block about %}
+  {% endblock about %}
 
-    {% block product %}
-    {% endblock product %}
+  {% block services %}
+  {% endblock services %}
 
-    {% block portfolio %}
-    {% endblock portfolio %}
+  {% block product %}
+  {% endblock product %}
 
-    {% block shop %}
-    {% endblock shop %}
+  {% block photography %}
+  {% endblock photography %}
 
-    {% block calculator %}
-    {% endblock calculator %}
+  {% block portfolio %}
+  {% endblock portfolio %}
 
-    {% block even %}
-    {% endblock even %}
+  {% block shop %}
+  {% endblock shop %}
 
-    {% block order_summary %}
-    {% endblock order_summary %}
+  {% block calculator %}
+  {% endblock calculator %}
 
-    {% block marksheet %}
-    {% endblock marksheet %}
+  {% block even %}
+  {% endblock even %}
 
-    {% block service_detail %}{% endblock service_detail %}
+  {% block order_summary %}
+  {% endblock order_summary %}
 
-    {% include "footer.html" %}
-   
-    {% include "scripts.html" %}
+  {% block marksheet %}
+  {% endblock marksheet %}
 
-    {% block extra_scripts %}
-    {% endblock extra_scripts %}
+  {% block service_detail %}{% endblock service_detail %}
+
+  {% include "footer.html" %}
+
+  {% include "scripts.html" %}
+
+  {% block extra_scripts %}
+  {% endblock extra_scripts %}
 </body>
+
 </html>
