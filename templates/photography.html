@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<section class="showcase-area" id="showcase">
+
+    <div class="showcase-container">
+        <h1 class="main-title" id="home" style="text-align: center; color: #000000; font-weight: 800;font-family: 'poppins', sans-serif;font-size: 60;
+             margin-bottom: 2rem;">
+            Welcome to Raymedia studio</h1>
+        <p style="text-align: center; color: #000000; font-weight: 800; font-size: 40;
+            font-family: 'poppins', sans-serif; margin-bottom: 2rem;">
+            proffesional photography services</p>
+        <a href="{% url 'core:reservation' %}" class="btn btn-primary"
+            style="background: #007bff; color: #fff; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600;">Book
+            Now</a>
+
+
+
+    </div>
+</section>
+<section id=" aboutphotography">
+    <div class="about-wrapper container photography">
+        <div class="about-text-photography">
+            <h1>About our photography services</h1>
+            <h2>Welcome to Raymedia </h2>
+            <p> Our
+                proffesional photography services
+                seamlessly
+                blend the timeless techniques of traditional portrait photography and sophisticated lighting
+                with a
+                fresh
+                and mordern approach. Our goal is to continously elevate the art of photography, creating
+                enduring
+                memories
+                t
+                hat captures the essence of those who grace our earth.</p>
+        </div>
+        <div class="about-img">
+            <img src="{% static 'assets/img/studio.jpg' %}" alt="studio" />
+        </div>
+    </div>
+</section>
+
+
+<section class="services" style="padding: 3rem 1rem; max-width: 1100px; margin: auto;">
+    <h2 style="text-align: center; color: #007bff; font-size: 60;
+        font-weight: 800; margin-bottom: 2rem;">
+        OUR SERVICES & PACKAGES
+    </h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+
+        <div style="background: #fff; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); padding: 1.5rem;">
+            <h3 style="color: #ff0000;font-weight: 500;">Studio Photography</h3>
+            <p>
+                Studio photography involves lighting, backdrops, and props to capture subjects with proffessional
+                precision.
+            </p>
+            <ul style="line-height: 1.8;">
+                <li>Basic Package -KES 1,000 (5 edited photos)</li>
+                <li>Additional Photos: Ksh 200 per photo</li>
+            </ul>
+        </div>
+
+
+
+        <!-- Live Streaming & Podcasts -->
+        <div style="background: #fff; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); padding: 1.5rem;">
+            <h3 style="color: #ff0000;font-weight: 500;">Live Streaming & Podcasts</h3>
+            <p>
+                We record your episode with live (virtual) audience
+            </p>
+            <ul style="line-height: 1.8;">
+                <li>Event live streaming - From Ksh.30,000 (Whole day)</li>
+                <li>Live podcast - From Ksh.3,000 (1 hour)</li>
+            </ul>
+        </div>
+
+        <!-- Weddings & Ruracio -->
+        <div style="background: #fff; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); padding: 1.5rem;">
+            <h3 style="color: #ff0000;font-weight: 500;">Weddings & Ruracio</h3>
+            <p>
+                Comprehensive photo and video coverage for weddings, ruracio, and engagements
+                capturing every moment beautifully.
+            </p>
+            <ul style="line-height: 1.8;">
+                <li>Basic package - Ksh.30,000</li>
+                <li>Bronze package - Ksh.45,000</li>
+                <li>Silver Package - Ksh.60,000</li>
+                <li>Gold package - Ksh.80,000</li>
+            </ul>
+        </div>
+        <div style="background: #fff; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); padding: 1.5rem;">
+            <h3 style="color: #ff0000; font-weight: 500;">Other Services</h3>
+            <ul style="line-height: 1.8;">
+                <li>Documentaries</li>
+                <li>Product Photography</li>
+                <li>Photo Mounting</li>
+                <li>Make Up</li>
+                <li>corporate events</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div style="text-align: center; margin-top: 3rem;"> <a href="{% url 'core:reservation' %}"
+            style="background: #007bff; color: #fff; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600;">
+            Book Your Session </a> </div>
+    {% if messages %}
+    <div class="alert alert-success">
+        {% for message in messages %}
+        {{ message }}
+        {% endfor %}
+    </div>
+    {% endif %}
+
+</section>
+
+
+
+{% endblock %}
