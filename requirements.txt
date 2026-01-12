@@ -1,0 +1,20 @@
+Django==5.2.3
+gunicorn==23.0.0
+whitenoise==6.11.0
+python-decouple==3.8
+dj-database-url==3.0.1
+psycopg2-binary==2.9.10
+
+# Django core features
+djangorestframework==3.16.0
+django-allauth==65.7.0
+django-crispy-forms==2.1
+crispy-bootstrap4==2023.1
+django-countries==7.6.1
+django-autoslug==1.9.9
+django-tinymce==4.1.0
+django-jazzmin==3.0.1
+django-render-partial==0.4
+
+# Payments
+stripe==12.2.0
